@@ -57,7 +57,7 @@ function mangasModel(db)
   mangaModel.deletemangas = (id, handler)=>
     {
       var query = {"_id": new ObjectId(id)};
-      mangasCollection.deleteOne(query, (err, rslt)=>{
+      mangaCollection.deleteOne(query, (err, rslt)=>{
           if(err)
           {
             console.log(err);

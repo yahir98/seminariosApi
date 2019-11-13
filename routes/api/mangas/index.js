@@ -85,7 +85,7 @@ router.delete(
     {
       return  res.status(404).json({"error": "Identificador no válido"});
     }
-    conModel.deletemangas(id, (err, rslt)=>{
+    mgModel.deletemangas(id, (err, rslt)=>{
       if(err)
       {
         return res.status(500).json({"error":"Ocurrió un error, intente de nuevo."});
