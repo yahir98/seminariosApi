@@ -45,7 +45,7 @@ function initmangaApi(db)
          //"createdBy": req.user
        }
      );
-    mgModel.saveNewmgmanga(newCon, (err, rslt)=>{
+    mgModel.saveNewmanga(newmg, (err, rslt)=>{
       if(err){
         res.status(500).json(err);
       }else{
@@ -75,6 +75,26 @@ function initmangaApi(db)
  }
 )
 
+
+router.delete(
+  '/delete/:conid',
+  function( req, res) {
+
+    var id = req.params.conid || '';
+    if(id===' ')
+    {
+      return  res.status(404).json({"error": "Identificador no válido"});
+    }
+    conModel.deletemangas(id, (err, rslt)=>{
+      if(err)
+      {
+        return res.status(500).json({"error":"Ocurrió un error, intente de nuevo."});
+      }
+      return res.status(200).json({"msg":"Deleted ok"});
+      
+    }); //delete product
+  }
+);
     return router;
 }
 

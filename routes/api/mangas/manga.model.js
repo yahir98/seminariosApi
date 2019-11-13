@@ -53,6 +53,19 @@ function mangasModel(db)
       }
     );
   };
+
+  mangaModel.deletemangas = (id, handler)=>
+    {
+      var query = {"_id": new ObjectId(id)};
+      mangasCollection.deleteOne(query, (err, rslt)=>{
+          if(err)
+          {
+            console.log(err);
+            return handler(err, null);
+          }
+          return handler(null, rslt);
+      })//deleteone
+    }
     return mangaModel;
 }
 module.exports = mangasModel;
