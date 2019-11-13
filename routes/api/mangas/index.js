@@ -53,7 +53,27 @@ function initmangaApi(db)
       }
     });// saveNewProduct
  }); // post /new
+ 
 
+ 
+ router.put('/update/:conid',
+ function(req, res)
+ {
+   var mgIdToModify = req.params.conid;
+   var nombreAct= req.body.nombre;
+   var AutortAct = req.body.Autor;
+   mgModel.updatemanga(
+     {nombre:nombreAct, Autor:apartamentAct}, mgIdToModify,
+     (err, rsult)=>{
+       if(err){
+         res.status(500).json(err);
+       }else{
+         res.status(200).json(rsult);
+       }
+     }
+     ); //updateProduct
+ }
+)
 
     return router;
 }

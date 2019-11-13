@@ -32,7 +32,27 @@ function mangasModel(db)
         }); //insertOne
     }
 
-
+    mangaModel.updatemanga = (updateFields, mangaId, handler)=>{
+      let mangaFilter = {"_id": new ObjectId(mangaId)};
+      let updateObject = {
+        "$set": {
+                  "nombre": updateFields.nombre,
+                  "Autor": updateFields.Autor,  
+                  "dateModified":new Date().getTime()
+              }
+     };
+       mangasCollection.updateOne(
+       condominioFilter,
+       updateObject,
+        (err, rslt)=>{
+        if(err){
+          console.log(err);
+          return handler(err, null);
+        }
+        return handler(null, rslt);
+      }
+    );
+  };
     return mangaModel;
 }
 module.exports = mangasModel;
